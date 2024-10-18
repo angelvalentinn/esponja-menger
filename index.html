@@ -12,14 +12,17 @@
       <!-- Aquí se ubicará el canvas -->
       <h1>
         <p>
-          ¡¿Esperabas ver el Nivel 4?! Bueno, llegamos hasta acá para que lo calcules vos... ¿Cuántos cubos tiene este Nivel? Si tenés paciencia y demasiado tiempo... ¡podés armarlo también!
+          ¡¿Esperabas ver el Nivel 3?! Bueno, llegamos hasta acá para que lo calcules vos... ¿Cuántos cubos tiene este Nivel? Si tenés paciencia y demasiado tiempo... ¡podés armarlo también!
         </p>
 
         <p>
           Los saluda Karina y Rocío. 
         </p>
         <p>
-          ISFD N°11. GEOMETRÍA NO EUCLIDEANA. Profesor: Rivolta.
+          ISFD N°11. GEOMETRÍA NO EUCLIDEANA. 
+        </p>
+        <p>
+          Profesor: Rivolta.
         </p>
       </h1>
     </main>
@@ -29,7 +32,6 @@
       <button aria-level="1">Nivel 1</button>
       <button aria-level="2">Nivel 2</button>
       <button aria-level="3">Nivel 3</button>
-      <button aria-level="4">Nivel 4</button>
     </div>
 
     <script>
@@ -59,11 +61,8 @@
             h1.style.display = 'none';
 
           } else if(btn.ariaLevel == '3'){
-            maxGeneraciones = 3;
-            h1.style.display = 'none';
-          } else {
             h1.style.display = 'block';
-          }
+          } 
 
           setup(maxGeneraciones, btn.ariaLevel);
 
@@ -74,7 +73,7 @@
         // Crea el canvas y lo ubica dentro del contenedor con ID "container"
         
         let canvas = createCanvas(canvaHeight, canvaWidth, WEBGL);
-        if(level != "4") {
+        if(level != "3") {
           cubos = [new Cubo(0, 0, 0, tamCubo)];
           canvas.parent("container"); // Asocia el canvas al elemento main con ID "container"
 
