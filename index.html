@@ -10,18 +10,32 @@
     <!-- Contenedor main -->
     <main id="container">
       <!-- Aquí se ubicará el canvas -->
+      <h1>
+        <p>
+          ¡¿Esperabas ver el Nivel 4?! Bueno, llegamos hasta acá para que lo calcules vos... ¿Cuántos cubos tiene este Nivel? Si tenés paciencia y demasiado tiempo... ¡podés armarlo también!
+        </p>
+
+        <p>
+          Los saluda Karina y Rocío. 
+        </p>
+        <p>
+          ISFD N°11. GEOMETRÍA NO EUCLIDEANA. Profesor: Rivolta.
+        </p>
+      </h1>
     </main>
 
     <div>
-      <button aria-level="0">Nivel 1</button>
-      <button aria-level="1">Nivel 2</button>
-      <button aria-level="2">Nivel 3</button>
-      <button aria-level="3">Nivel 4</button>
+      <button aria-level="0">Nivel 0</button>
+      <button aria-level="1">Nivel 1</button>
+      <button aria-level="2">Nivel 2</button>
+      <button aria-level="3">Nivel 3</button>
+      <button aria-level="4">Nivel 4</button>
     </div>
 
     <script>
       const main = document.querySelector("#container");
       const btns = document.querySelectorAll("button");
+      const h1 = document.querySelector("h1");
 
       let cubos = [new Cubo(0, 0, 0, 200)];
       let maxGeneraciones = 3;
@@ -36,35 +50,49 @@
         btn.addEventListener("click", (e) => {
           if (btn.ariaLevel == "0") {
             maxGeneraciones = 0;
+            h1.style.display = 'none';
           } else if (btn.ariaLevel == "1") {
             maxGeneraciones = 1;
+            h1.style.display = 'none';
           } else if (btn.ariaLevel == "2") {
             maxGeneraciones = 2;
-          } else {
+            h1.style.display = 'none';
+
+          } else if(btn.ariaLevel == '3'){
             maxGeneraciones = 3;
+            h1.style.display = 'none';
+          } else {
+            h1.style.display = 'block';
           }
 
-          setup(maxGeneraciones);
+          setup(maxGeneraciones, btn.ariaLevel);
 
         });
       });
 
-      function setup(maxGeneraciones) {
+      function setup(maxGeneraciones, level) {
         // Crea el canvas y lo ubica dentro del contenedor con ID "container"
+        
         let canvas = createCanvas(canvaHeight, canvaWidth, WEBGL);
-        cubos = [new Cubo(0, 0, 0, tamCubo)];
-        canvas.parent("container"); // Asocia el canvas al elemento main con ID "container"
+        if(level != "4") {
+          cubos = [new Cubo(0, 0, 0, tamCubo)];
+          canvas.parent("container"); // Asocia el canvas al elemento main con ID "container"
 
-        frameRate(30); // Limitar FPS para mejorar rendimiento
-        for (let i = 0; i < maxGeneraciones; i++) {
-          siguienteGeneracion();
+          frameRate(30); // Limitar FPS para mejorar rendimiento
+          for (let i = 0; i < maxGeneraciones; i++) {
+            siguienteGeneracion();
+          } 
+        } else {
+          canvas.remove()
         }
       }
 
       function draw() {
         background("lightgray");
-        fill("purple");
-        noStroke();
+        fill("#b925b9");
+        
+        stroke(0);         // Color del borde para las divisiones
+        strokeWeight(.5); 
         translate(0, -20, 0);
 
         // Mapeo del cursor para rotar el cubo basado en la posición del mouse
